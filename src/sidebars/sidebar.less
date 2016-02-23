@@ -127,3 +127,21 @@
   color: @text-grey;
   .font(14px, @font-medium);
 }
+
+.inactive.compact .sidebars{
+    .favourites {
+      position: absolute;
+      top: 0px;
+      bottom: 0px;
+      #favScroll{
+        top: 0px;
+        bottom: 0px;
+      }
+    }
+    .search.compact-search {
+      display: none;
+    }
+    .sidetab-top{
+      display: none;
+    }
+}

@@ -6,6 +6,7 @@
             this.store = null;
             this.$scope = $scope;
             this.$timeout = $timeout;
+			this.hovered = true;
 
             this.tearingOut = false;
             this.watch();
@@ -34,6 +35,17 @@
             }
 
             return this.store && this.store.isCompact();
+        }
+
+        hoverIn() {
+            this.hovered = true;
+        }
+        hoverOut() {
+            this.hovered = false;
+        }
+
+        isHovered() {
+            return this.hovered;
         }
     }
     MainCtrl.$inject = ['$scope', '$timeout'];

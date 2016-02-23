@@ -1,4 +1,5 @@
-<div class="main" ng-class="{compact: mainCtrl.isCompact(), 'disable-pointer': mainCtrl.disablePointer()}">
+<div class="main" ng-class="{compact: mainCtrl.isCompact(), 'disable-pointer': mainCtrl.disablePointer(), inactive: !mainCtrl.isHovered()}"
+	ng-mouseover="mainCtrl.hoverIn()" ng-mouseleave="mainCtrl.hoverOut()">>
     <toolbar></toolbar>
     <side-bar></side-bar>
     <div class="right-content">
