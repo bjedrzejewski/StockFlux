@@ -62,6 +62,14 @@
             this.window.resizeTo(defaultWidth, defaultHeight, 'top-right');
         }
 
+        getCompactHeight() {
+            var stocks = this.store.get();
+            if (stocks.length <= 3) {
+                return stocks.length * 101 + 68;
+            }
+            return 500;
+        }
+
         _compactChanged() {
             var becomingCompact = this.isCompact();
             if (window.outerWidth !== compactWidth) {
