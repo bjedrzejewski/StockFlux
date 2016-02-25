@@ -4,7 +4,8 @@
     const defaultWidth = 1280,
         defaultHeight = 720,
         compactWidth = 230,
-        compactHeight = 500;
+        compactHeight = 500,
+        cardHeight = 101;
 
     class ToolbarCtrl {
         constructor($scope, $timeout, currentWindowService) {
@@ -65,9 +66,9 @@
         getCompactHeight() {
             var stocks = this.store.get();
             if (stocks.length <= 3) {
-                return stocks.length * 101;
+                return stocks.length * cardHeight;
             }
-            return 500;
+            return compactHeight;
         }
 
         _compactChanged() {
@@ -81,7 +82,7 @@
             }
 
             if (becomingCompact) {
-                this.window.resizeTo(compactWidth, compactHeight, 'top-right');
+                this.window.resizeTo(compactWidth, this.getCompactHeight(), 'top-right');
             }
             else if (this.maximised) {
                 this.window.maximize();
