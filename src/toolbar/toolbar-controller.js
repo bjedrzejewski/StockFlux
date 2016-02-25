@@ -117,6 +117,9 @@
             this.$scope.$watch(
                 () => this.isCompact(),
                 () => this._compactChanged());
+            this.$scope.$watch(
+                () => this.getCompactHeight(),
+                () => this._compactChanged());
         }
     }
     ToolbarCtrl.$inject = ['$scope', '$timeout', 'currentWindowService'];
