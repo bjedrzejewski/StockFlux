@@ -65,7 +65,7 @@
         getCompactHeight() {
             var stocks = this.store.get();
             if (stocks.length <= 3) {
-                return stocks.length * 101 + 68;
+                return stocks.length * 101;
             }
             return 500;
         }
