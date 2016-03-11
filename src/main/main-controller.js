@@ -6,7 +6,7 @@
             this.store = null;
             this.$scope = $scope;
             this.$timeout = $timeout;
-			this.hovered = true;
+            this.hovered = true;
 
             this.tearingOut = false;
             this.watch();
