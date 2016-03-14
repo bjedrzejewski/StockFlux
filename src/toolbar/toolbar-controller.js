@@ -29,6 +29,12 @@
                 });
             };
 
+            this.blurredEvent = () => {
+                this.$timeout(() => {
+                    this.$scope.$emit('windowBlurred');
+                });
+            };
+
             currentWindowService.ready(() => {
                 var boundReady = this.onReady.bind(this);
                 boundReady();
@@ -48,6 +54,13 @@
             this.window = this.currentWindowService.getCurrentWindow();
             this.window.addEventListener('maximized', this.maximisedEvent);
             this.window.addEventListener('restored', this.restoredEvent);
+            this.window.addEventListener('blurred', this.blurredEvent);
+
+            this.$scope.$on('windowHoverIn', () => {
+                this.$timeout(() => {
+                    this.window.focus();
+                });
+            });
         }
 
         minimiseClick() {

@@ -23,6 +23,11 @@
                     this.tearingOut = false;
                 });
             });
+            this.$scope.$on('windowBlurred', () => {
+                this.$timeout(() => {
+                    this.hoverOut();
+                });
+            });
         }
 
         disablePointer() {
@@ -38,9 +43,11 @@
         }
 
         hoverIn() {
+            this.$scope.$emit('windowHoverIn');
             this.hovered = true;
         }
         hoverOut() {
+            this.$scope.$emit('windowHoverOut');
             this.hovered = false;
         }
 
