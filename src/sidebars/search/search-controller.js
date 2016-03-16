@@ -83,6 +83,10 @@
             );
 
             if (this.stocks.length > 0) {
+                if (delta) {
+                    var params = delta === -1 ? '+=60' : '-=60';
+                    this.$scope.$emit('scrollTo', {target: 'search-scroll', params: params});
+                }
                 this.select(this.stocks[newPointer]);
             }
         }
