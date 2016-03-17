@@ -16,6 +16,10 @@
             this.errors = [];
             this.isLoading = false;
 
+            this.viewHeight = 720;
+            this.resultHeight = 60;
+            this.firstDisplayedIndex = 0;
+
             this._watch();
         }
 
@@ -48,6 +52,7 @@
         }
 
         onSearchKeyDown(event) {
+            this.viewHeight = event.view.innerHeight;
             if (event.keyCode === 38) {
                 // Up
                 this.changePointer(-1);
@@ -83,14 +88,30 @@
             );
 
             if (this.stocks.length > 0) {
-                if (delta) {
-                    var params = delta === -1 ? '+=60' : '-=60';
-                    this.$scope.$emit('scrollTo', {target: 'search-scroll', params: params});
-                }
+                this.keyScroll(delta, newPointer);
                 this.select(this.stocks[newPointer]);
             }
         }
 
+        stocksTotalHeight() {
+            return this.stocks.length * this.resultHeight;
+        }
+
+        lastDisplayedIndex() {
+            return Math.min(
+                Math.floor((this.viewHeight - 50) / this.resultHeight) - 1,
+                this.stocks.length - 1
+            ) + this.firstDisplayedIndex;
+        }
+
+        keyScroll(delta, newPointer) {
+            var scrollParams = delta === -1 ? '+=' + this.resultHeight : '-=' + this.resultHeight;
+            if (delta && newPointer < this.firstDisplayedIndex || newPointer > this.lastDisplayedIndex()) {
+                this.firstDisplayedIndex += delta;
+                this.firstDisplayedIndex = Math.max(this.firstDisplayedIndex, 0);
+                this.$scope.$emit('scrollTo', {target: 'search-scroll', params: scrollParams});
+            }
+        }
 
         submit() {
             this.stocks = [];
