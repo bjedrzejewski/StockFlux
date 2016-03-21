@@ -93,24 +93,23 @@
             }
         }
 
-        stocksTotalHeight() {
-            return this.stocks.length * this.resultHeight;
+        numberOfResultsDisplayed() {
+            return Math.floor((this.viewHeight - 50) / this.resultHeight);
         }
 
-        lastDisplayedIndex() {
-            return Math.min(
-                Math.floor((this.viewHeight - 50) / this.resultHeight) - 1,
-                this.stocks.length - 1
-            ) + this.firstDisplayedIndex;
+        scrollTarget(delta, newPointer) {
+            return Math.max(
+                0,
+                newPointer - this.numberOfResultsDisplayed() + 1
+            );
         }
 
         keyScroll(delta, newPointer) {
-            var scrollParams = delta === -1 ? '+=' + this.resultHeight : '-=' + this.resultHeight;
-            if (delta && newPointer < this.firstDisplayedIndex || newPointer > this.lastDisplayedIndex()) {
-                this.firstDisplayedIndex += delta;
-                this.firstDisplayedIndex = Math.max(this.firstDisplayedIndex, 0);
-                this.$scope.$emit('scrollTo', {target: 'search-scroll', params: scrollParams});
-            }
+            this.$scope.$emit('scrollTo', {
+                target: 'search-scroll',
+                selector: '.search-result',
+                index: this.scrollTarget(delta, newPointer)
+            });
         }
 
         submit() {

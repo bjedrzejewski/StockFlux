@@ -16,7 +16,9 @@
                     });
                     scope.$on('scrollTo', (event, data) => {
                         if (data.target === elementId) {
-                            element.mCustomScrollbar('scrollTo', data.params);
+                            element.mCustomScrollbar('scrollTo', element.find('.mCSB_container').find(data.selector + ':eq(' + data.index + ')'), {
+                                scrollInertia: 200
+                            });
                         }
                     });
                     element.mCustomScrollbar(
