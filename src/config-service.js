@@ -71,6 +71,10 @@
                 resizable: false,
                 showTaskbarIcon: false,
                 saveWindowState: false,
+                minWidth: TEAROUT_CARD_DIMENSIONS[0],
+                minHeight: TEAROUT_CARD_DIMENSIONS[1],
+                defaultWidth: TEAROUT_CARD_DIMENSIONS[0],
+                defaultHeight: TEAROUT_CARD_DIMENSIONS[1],
                 maxWidth: TEAROUT_CARD_DIMENSIONS[0],
                 maxHeight: TEAROUT_CARD_DIMENSIONS[1],
                 url: 'tearout.html'
